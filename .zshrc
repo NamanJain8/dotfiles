@@ -2,35 +2,27 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/algod/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/algod/go/bin
-export PATH=/home/algod/mpich-install/bin:$PATH
-export PATH=/home/algod/oz/bin:$PATH
-export KOTLIN_PATH=/home/algod/Github/competetive/codeforces/contest/kotlin/kotlinc/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$HOME/mpich-install/bin:$PATH
+export PATH=$HOME/oz/bin:$PATH
+
+export KOTLIN_PATH=$HOME/Github/competetive/codeforces/contest/kotlin/kotlinc/bin
 export PATH=$KOTLIN_PATH:$PATH
-export GOPATH=/home/algod/go
+export GOPATH=$HOME/go
 export LD_LIBRARY_PATH=/usr/local/bin
 
-export AWS_ACCESS_KEY_ID=AKIAJQOIDTBZYKQS67HA
-export AWS_SECRET_ACCESS_KEY=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
-export AWS_REGION=us-west-2
-
-alias dz='dgraph zero'
-alias da='dgraph alpha'
-alias ratel='dgraph-ratel'
-alias dv='dgraph version'
-alias dl='dgraph live'
-alias dmake='make -C ~/go/src/github.com/dgraph-io/dgraph && make install -C ~/go/src/github.com/dgraph-io/dgraph'
+export LFS=/mnt/lfs
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit"
-export LFS=/mnt/lfs
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -s /home/algod/.autojump/etc/profile.d/autojump.sh ]] && source /home/algod/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 # Alias
 
 alias chrome='google-chrome'
@@ -90,7 +82,7 @@ alias bright='sudo chmod -R 757 /sys/class/backlight/intel_backlight/brightness'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,3 +106,4 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
