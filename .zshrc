@@ -4,31 +4,47 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/go/bin
-export PATH=$HOME/mpich-install/bin:$PATH
-export PATH=$HOME/oz/bin:$PATH
-
-export KOTLIN_PATH=$HOME/Github/competetive/codeforces/contest/kotlin/kotlinc/bin
-export PATH=$KOTLIN_PATH:$PATH
+export JEMALLOC_PATH=$HOME/jemalloc
 export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOBIN
+export PATH=$JEMALLOC_PATH/bin:$PATH
+export PATH=$HOME/mpich-install/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+
 export LD_LIBRARY_PATH=/usr/local/bin
 
 export LFS=/mnt/lfs
+
+# Kubernetes configurations.
+export KUBE_EDITOR=nano
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit"
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 # Alias
 
-alias chrome='google-chrome'
-
 ## changed owner to algod: so need for this command
 alias bright='sudo chmod -R 757 /sys/class/backlight/intel_backlight/brightness'
+alias dup='docker-compose --compatibility up'
+alias ddown='docker-compose down'
+alias dre='docker-compose restart'
+alias dlogs='docker-compose logs -f'
+alias dls='docker ps -a'
+alias dclean='docker ps --filter name="test*" -aq | xargs docker stop | xargs docker rm; docker system prune'
+export DPATH=$HOME/go/src/github.com/dgraph-io
+alias mdz='pushd $DPATH/dgraph && make install && popd'
+alias k='kubectl'
+
+# Import aliases
+alias_files=(dgraph)
+for file in ${alias_files[@]}; do
+	[[ -f "$HOME/.alias/$file" ]] && source "$HOME/.alias/$file"
+done
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -107,3 +123,15 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/algod/google-cloud-sdk/path.zsh.inc' ]; then . '/home/algod/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/algod/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/algod/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ ! -s /home/algod/.travis/travis.sh ] || source /home/algod/.travis/travis.sh
